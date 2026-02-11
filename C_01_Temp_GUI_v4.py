@@ -99,10 +99,10 @@ class Converter():
     def convert(self, min_temp, to_convert):
 
         if min_temp == c.ABS_ZERO_CELSIUS:
-            answer = cr.to_fahrenheit(to_convert)
+            answer = cr.to_celsius(to_convert)
             answer_statement = f"{to_convert} °C is {answer} °F"
         else:
-            answer = cr.to_celsius(to_convert)
+            answer = cr.to_fahrenheit(to_convert)
             answer_statement = f"{to_convert} °F is {answer} °C"
 
         self.answer_error.config(text=answer_statement)
