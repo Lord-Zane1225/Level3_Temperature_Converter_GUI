@@ -1,7 +1,7 @@
 from tkinter import *
 
 
-class Converter():
+class Converter:
     """
     Temperature convertion tool (°C to °F or °F to °C)
     """
