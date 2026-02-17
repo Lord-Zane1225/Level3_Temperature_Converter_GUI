@@ -18,6 +18,18 @@ class Converter:
                                       '30.0 °C is 86 °F',
                                       '40.0 °C is 104 °F']
 
+        newest_first = list(reversed(self.all_calculations_list))
+
+        print("==== Oldest to newest for File ====")
+        for item in self.all_calculations_list:
+            print(item)
+
+        print()
+
+        print("==== Most Recent First ====")
+        for item in newest_first:
+            print(item)
+
         # frame
         self.temp_frame = Frame(padx=10, pady=10)
         self.temp_frame.grid()
@@ -58,6 +70,21 @@ class HistoryExport:
         recent_intro_txt = (f"Below are {calc_amount} calculations. All calculations are "
                             "shown to the nearest degree")
 
+        # create string from calculations list (newest first)
+        newest_first_string = ""
+        newest_first_list = list(reversed(calculations))
+
+        if len (newest_first_list) <= c.MAX_CALCS:
+
+            for item in newest_first_list:
+                newest_first_string += item + "\n"
+        else:
+            for item in newest_first_list[:c.MAX_CALCS-1]:
+                newest_first_string += item + "\n"
+
+            newest_first_string += newest_first_list[c.MAX_CALCS-1]
+
+
         export_instructions_txt = ("Please push <Export> to save your calculations in a text file. If the filename "
                                    "already exists, it will be ...")
 
@@ -66,7 +93,7 @@ class HistoryExport:
         history_labels_list = [
         ["History / Export", ("Arial", 16, "bold"), None],
         [recent_intro_txt, ("Arial", 11, "bold"), None],
-        ["Calculation list", ("Arial", 14, "bold"), calc_back],
+        [newest_first_string, ("Arial", 14, "bold"), calc_back],
         [export_instructions_txt, ("Arial", 11, "bold"), None],
         ]
 
