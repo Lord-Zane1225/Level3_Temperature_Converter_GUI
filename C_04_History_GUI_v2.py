@@ -16,7 +16,8 @@ class Converter:
         self.all_calculations_list = ['10.0 °C is 50 °F',
                                       '20.0 °C is 68 °F',
                                       '30.0 °C is 86 °F',
-                                      '40.0 °C is 104 °F']
+                                      '40.0 °C is 104 °F',
+                                     ]
 
         newest_first = list(reversed(self.all_calculations_list))
 
@@ -63,7 +64,7 @@ class HistoryExport:
             calc_back = "#D5E8D4"
             calc_amount = "all your"
         else:
-            calc_back = "ffe6cc"
+            calc_back = "#ffe6cc"
             calc_amount = f"your recent calculations - showing {c.MAX_CALCS} / {len(calculations)}"
 
         # strings for 'long' labels
@@ -76,8 +77,11 @@ class HistoryExport:
 
         if len (newest_first_list) <= c.MAX_CALCS:
 
-            for item in newest_first_list:
+            for item in newest_first_list[:-1]:
                 newest_first_string += item + "\n"
+
+            newest_first_string += newest_first_list[-1]
+
         else:
             for item in newest_first_list[:c.MAX_CALCS-1]:
                 newest_first_string += item + "\n"
